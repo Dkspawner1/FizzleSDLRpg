@@ -1,0 +1,16 @@
+# ninja log v6
+23	3322	7515835146962222	CMakeFiles/FizzleRpg.dir/main.cpp.obj	93ac5dd6bde7eb46
+1594	1706	7515811057313379	MinimalSDL2Example.exe	d436a00cfdf10a25
+3	244	7515838715129372	build.ninja	9c790d83f7a58aa6
+11	1465	7515811041480579	CMakeFiles/MinimalSDL2Example.dir/main.cpp.obj	55b3dff465dbdfa5
+2	13	7515799396527937	clean	20b1347d9ae3b987
+15	1594	7515811041520475	CMakeFiles/MinimalSDL2Example.dir/src/Window.cpp.obj	e71c4f95381637f5
+6	1276	7515814705913464	CMakeFiles/FizzleRpg.dir/src/Window.cpp.obj	69b2070e73d45f7b
+3323	3472	7515835179954851	FizzleRpg.exe	211f8915e11e8914
+23	1151	7515826426617813	CMakeFiles/FizzleRpg.dir/src/Scenes/Scene.cpp.obj	8634fb79f968367f
+20	1790	7515826426577919	CMakeFiles/FizzleRpg.dir/src/Scenes/MainMenuScene.cpp.obj	e4ffd884dbe04c6
+17	2138	7515829222814627	CMakeFiles/FizzleRpg.dir/src/SceneManager/SceneManager.cpp.obj	2abe19a9938ab202
+21	1733	7515829222870116	CMakeFiles/FizzleRpg.dir/src/Window/Window.cpp.obj	a6d467adcdc800d5
+13	1158	7515826426513011	CMakeFiles/FizzleRpg.dir/src/EventManager/EventManager.cpp.obj	da218fabe6ce0717
+11	4389	7515838733175745	CMakeFiles/FizzleRpg.dir/main.cpp.obj	93ac5dd6bde7eb46
+4389	5181	7515838776962156	FizzleRpg.exe	211f8915e11e8914
