@@ -7,7 +7,7 @@
 class MainMenuScene : public Scene {
 public:
     MainMenuScene();
-    ~MainMenuScene();
+    ~MainMenuScene() override;
 
     void initialize(SDL_Renderer* renderer) override;  // Override with parameters
     void update() override;

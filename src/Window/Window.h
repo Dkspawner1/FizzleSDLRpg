@@ -9,11 +9,11 @@ public:
     Window(const std::string &title, int width, int height);
     ~Window();
 
-    bool initialize();
-    void clear();
-    void display();
-    bool isOpen() const;
-    SDL_Renderer* getRenderer() const;
+    bool initialize() const;
+    void clear() const;
+    void display() const;
+    [[nodiscard]] bool isOpen() const;
+    [[nodiscard]] SDL_Renderer* getRenderer() const;
 
 private:
     SDL_Window* m_window;

@@ -9,12 +9,12 @@
 
 class SceneManager {
 public:
-    void addScene(const std::string& name, std::shared_ptr<Scene> scene);
+    void addScene(const std::string& name, const std::shared_ptr<Scene> &scene);
 
     void changeScene(const std::string& name, SDL_Renderer* renderer);
 
-    void update();
-    void render(SDL_Renderer* renderer);
+    void update() const;
+    void render(SDL_Renderer* renderer) const;
 
 private:
     std::map<std::string, std::shared_ptr<Scene>> m_scenes;

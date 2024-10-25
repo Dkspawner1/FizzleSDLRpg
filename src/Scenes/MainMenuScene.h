@@ -4,10 +4,10 @@
 #include "Scene.h"
 #include <SDL.h>
 
-class MainMenuScene : public Scene {
+class MainMenuScene final : public Scene {
 public:
     MainMenuScene();
-    ~MainMenuScene();
+    ~MainMenuScene() override;
 
     void initialize(SDL_Renderer* renderer) override;
     void update() override;

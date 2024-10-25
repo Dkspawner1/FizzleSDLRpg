@@ -7,10 +7,8 @@
 
 class RenderSystem {
 public:
-    void render(entt::registry &registry, SDL_Renderer *renderer) {
-        auto view = registry.view<ButtonComponent>();
-
-        for (auto entity: view) {
+    static void render(entt::registry &registry, SDL_Renderer *renderer) {
+        for (const auto view = registry.view<ButtonComponent>(); const auto entity: view) {
             const auto &button = view.get<ButtonComponent>(entity);
 
             SDL_SetRenderDrawColor(renderer, button.isHovered ? 255 : 0, 0, 0, 255);

@@ -34,18 +34,18 @@ Window::~Window() {
     SDL_Quit();
 }
 
-bool Window::initialize() {
+bool Window::initialize() const {
     return m_isOpen;  // Return whether the window is open
 }
 
-void Window::clear() {
+void Window::clear() const {
     if (m_renderer) {
         SDL_SetRenderDrawColor(m_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
         SDL_RenderClear(m_renderer);
     }
 }
 
-void Window::display() {
+void Window::display() const {
     if (m_renderer) {
         SDL_RenderPresent(m_renderer);
     }
@@ -56,5 +56,5 @@ bool Window::isOpen() const {
 }
 
 SDL_Renderer* Window::getRenderer() const {
-    return m_renderer;  // Return the renderer
+    return m_renderer;
 }
