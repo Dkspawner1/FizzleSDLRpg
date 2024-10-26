@@ -1,12 +1,26 @@
-﻿#include <entt/entt.hpp>
+﻿#include <crtdbg.h>
 #include <SDL.h>
-#include "src/Window/Window.h"
+#include <entt/entt.hpp>
+#include "Resources/ResourceManager.h"
 #include "src/EventManager/EventManager.h"
 #include "src/SceneManager/SceneManager.h"
 #include "src/Scenes/MainMenuScene.h"
-#include "Resources/ResourceManager.h"
+#include "src/Window/Window.h"
 
 int main(int argc, char *args[]) {
+    #if (DEBUG_LEVEL > 0)
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+    _CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDOUT);
+    _CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);
+    _CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDOUT);
+    _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
+    _CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDOUT);
+
+    // Uncomment the following line and replace XXXX with the allocation number to break on
+    // _CrtSetBreakAlloc(XXXX);
+    #endif
+
     // Initialize the window
     const Window window("Fizzle RPG!", 1600, 900);
     if (!window.initialize()) {
@@ -14,7 +28,8 @@ int main(int argc, char *args[]) {
     }
 
     // Resource Manager for loading textures
-    ResourceManager& resourceManager = ResourceManager::getInstance(); // Use singleton instance
+    // Use singleton instance
+    // ResourceManager& resourceManager = ResourceManager::getInstance();
 
     // Event and Scene Managers
     EventManager eventManager;
@@ -41,16 +56,22 @@ int main(int argc, char *args[]) {
 
         // Handle events
         while (SDL_PollEvent(&event)) {
-            eventManager.handleEvents(running);
-            sceneManager.update(registry, event);  // Pass SDL_Event to SceneManager
+            EventManager::handleEvents(running);
+            sceneManager.update(registry, event);
         }
-
-        window.clear();  // Clear the window
-
-        sceneManager.render(window.getRenderer(), registry);  // Pass the registry here
-
-        window.display();  // Display the rendered content
+        // Clear the window
+        window.clear();
+        // Pass the registry here
+        sceneManager.render(window.getRenderer(), registry);
+        // Display the rendered content
+        window.display();
     }
 
-    return 0;  // Return success
+    // Dump memory leaks at the end of execution
+    #if (DEBUG_LEVEL > 0)
+    _CrtDumpMemoryLeaks();
+    #endif
+
+    // Return success
+    return 0;
 }

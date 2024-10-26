@@ -7,6 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Set the MSYS2 MinGW64 path
 set(MINGW_PATH "C:/msys64/mingw64")
 
+if (DEBUG_LEVEL)
+    add_definitions(-DDEBUG_LEVEL=${DEBUG_LEVEL})
+endif()
+
 # Find SDL2 package
 find_package(SDL2 REQUIRED PATHS "${MINGW_PATH}/lib/cmake/SDL2")
 
