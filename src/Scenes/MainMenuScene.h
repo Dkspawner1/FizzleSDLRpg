@@ -15,7 +15,11 @@ public:
     void render(SDL_Renderer* renderer, entt::registry& registry) override;
 
 private:
-    SDL_Texture* m_backgroundTexture;  // Texture for the background
+    void createBackground(SDL_Renderer* renderer, entt::registry& registry);
+    void createButtons(SDL_Renderer* renderer, entt::registry& registry);
+
+    SDL_Renderer* m_renderer;
+    entt::registry* m_registry;
 };
 
 #endif // MAINMENUSCENE_H

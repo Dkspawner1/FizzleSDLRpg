@@ -24,7 +24,14 @@ find_package(EnTT REQUIRED PATHS "${MINGW_PATH}/lib/cmake/EnTT")
 file(GLOB_RECURSE SOURCES "src/**/*.cpp" "Resources/*.cpp")
 
 # Create the executable
-add_executable(FizzleRpg ${SOURCES} main.cpp)
+add_executable(FizzleRpg ${SOURCES} main.cpp
+        src/Factories/GameObjectFactory.cpp
+        src/Factories/GameObjectFactory.h
+        src/ECS/Components/BackgroundComponent.h
+        src/Scenes/SettingsScene.cpp
+        src/Scenes/SettingsScene.h
+        src/Scenes/GameScene.cpp
+        src/Scenes/GameScene.h)
 
 # Include directories for headers
 target_include_directories(FizzleRpg PRIVATE

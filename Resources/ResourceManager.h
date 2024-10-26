@@ -10,7 +10,7 @@
 class ResourceManager {
 public:
     static ResourceManager& getInstance() {
-        static ResourceManager instance; // Guaranteed to be destroyed
+        static ResourceManager instance;
         return instance;
     }
 
@@ -20,9 +20,9 @@ public:
     ~ResourceManager();
 
 private:
-    ResourceManager() = default; // Private constructor for singleton
-    ResourceManager(const ResourceManager&) = delete; // Prevent copying
-    ResourceManager& operator=(const ResourceManager&) = delete; // Prevent assignment
+    ResourceManager() = default;
+    ResourceManager(const ResourceManager&) = delete;
+    ResourceManager& operator=(const ResourceManager&) = delete;
 
     std::unordered_map<std::string, SDL_Texture*> textures;
 };

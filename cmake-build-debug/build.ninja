@@ -63,6 +63,13 @@ build CMakeFiles/FizzleRpg.dir/src/EventManager/EventManager.cpp.obj: CXX_COMPIL
   OBJECT_DIR = CMakeFiles\FizzleRpg.dir
   OBJECT_FILE_DIR = CMakeFiles\FizzleRpg.dir\src\EventManager
 
+build CMakeFiles/FizzleRpg.dir/src/Factories/GameObjectFactory.cpp.obj: CXX_COMPILER__FizzleRpg_unscanned_Debug C$:/Users/Nicho/CLionProjects/FizzleRpg/src/Factories/GameObjectFactory.cpp || cmake_object_order_depends_target_FizzleRpg
+  DEP_FILE = CMakeFiles\FizzleRpg.dir\src\Factories\GameObjectFactory.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Nicho/CLionProjects/FizzleRpg/src -isystem C:/msys64/mingw64/include -isystem C:/msys64/mingw64/include/SDL2
+  OBJECT_DIR = CMakeFiles\FizzleRpg.dir
+  OBJECT_FILE_DIR = CMakeFiles\FizzleRpg.dir\src\Factories
+
 build CMakeFiles/FizzleRpg.dir/src/SceneManager/SceneManager.cpp.obj: CXX_COMPILER__FizzleRpg_unscanned_Debug C$:/Users/Nicho/CLionProjects/FizzleRpg/src/SceneManager/SceneManager.cpp || cmake_object_order_depends_target_FizzleRpg
   DEP_FILE = CMakeFiles\FizzleRpg.dir\src\SceneManager\SceneManager.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
@@ -70,8 +77,22 @@ build CMakeFiles/FizzleRpg.dir/src/SceneManager/SceneManager.cpp.obj: CXX_COMPIL
   OBJECT_DIR = CMakeFiles\FizzleRpg.dir
   OBJECT_FILE_DIR = CMakeFiles\FizzleRpg.dir\src\SceneManager
 
+build CMakeFiles/FizzleRpg.dir/src/Scenes/GameScene.cpp.obj: CXX_COMPILER__FizzleRpg_unscanned_Debug C$:/Users/Nicho/CLionProjects/FizzleRpg/src/Scenes/GameScene.cpp || cmake_object_order_depends_target_FizzleRpg
+  DEP_FILE = CMakeFiles\FizzleRpg.dir\src\Scenes\GameScene.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Nicho/CLionProjects/FizzleRpg/src -isystem C:/msys64/mingw64/include -isystem C:/msys64/mingw64/include/SDL2
+  OBJECT_DIR = CMakeFiles\FizzleRpg.dir
+  OBJECT_FILE_DIR = CMakeFiles\FizzleRpg.dir\src\Scenes
+
 build CMakeFiles/FizzleRpg.dir/src/Scenes/MainMenuScene.cpp.obj: CXX_COMPILER__FizzleRpg_unscanned_Debug C$:/Users/Nicho/CLionProjects/FizzleRpg/src/Scenes/MainMenuScene.cpp || cmake_object_order_depends_target_FizzleRpg
   DEP_FILE = CMakeFiles\FizzleRpg.dir\src\Scenes\MainMenuScene.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Nicho/CLionProjects/FizzleRpg/src -isystem C:/msys64/mingw64/include -isystem C:/msys64/mingw64/include/SDL2
+  OBJECT_DIR = CMakeFiles\FizzleRpg.dir
+  OBJECT_FILE_DIR = CMakeFiles\FizzleRpg.dir\src\Scenes
+
+build CMakeFiles/FizzleRpg.dir/src/Scenes/SettingsScene.cpp.obj: CXX_COMPILER__FizzleRpg_unscanned_Debug C$:/Users/Nicho/CLionProjects/FizzleRpg/src/Scenes/SettingsScene.cpp || cmake_object_order_depends_target_FizzleRpg
+  DEP_FILE = CMakeFiles\FizzleRpg.dir\src\Scenes\SettingsScene.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Nicho/CLionProjects/FizzleRpg/src -isystem C:/msys64/mingw64/include -isystem C:/msys64/mingw64/include/SDL2
   OBJECT_DIR = CMakeFiles\FizzleRpg.dir
@@ -99,7 +120,7 @@ build CMakeFiles/FizzleRpg.dir/main.cpp.obj: CXX_COMPILER__FizzleRpg_unscanned_D
 #############################################
 # Link the executable FizzleRpg.exe
 
-build FizzleRpg.exe: CXX_EXECUTABLE_LINKER__FizzleRpg_Debug CMakeFiles/FizzleRpg.dir/Resources/ResourceManager.cpp.obj CMakeFiles/FizzleRpg.dir/src/EventManager/EventManager.cpp.obj CMakeFiles/FizzleRpg.dir/src/SceneManager/SceneManager.cpp.obj CMakeFiles/FizzleRpg.dir/src/Scenes/MainMenuScene.cpp.obj CMakeFiles/FizzleRpg.dir/src/Window/Window.cpp.obj CMakeFiles/FizzleRpg.dir/main.cpp.obj | C$:/msys64/mingw64/lib/libSDL2main.a C$:/msys64/mingw64/lib/libSDL2.dll.a C$:/msys64/mingw64/lib/libSDL2_image.dll.a
+build FizzleRpg.exe: CXX_EXECUTABLE_LINKER__FizzleRpg_Debug CMakeFiles/FizzleRpg.dir/Resources/ResourceManager.cpp.obj CMakeFiles/FizzleRpg.dir/src/EventManager/EventManager.cpp.obj CMakeFiles/FizzleRpg.dir/src/Factories/GameObjectFactory.cpp.obj CMakeFiles/FizzleRpg.dir/src/SceneManager/SceneManager.cpp.obj CMakeFiles/FizzleRpg.dir/src/Scenes/GameScene.cpp.obj CMakeFiles/FizzleRpg.dir/src/Scenes/MainMenuScene.cpp.obj CMakeFiles/FizzleRpg.dir/src/Scenes/SettingsScene.cpp.obj CMakeFiles/FizzleRpg.dir/src/Window/Window.cpp.obj CMakeFiles/FizzleRpg.dir/main.cpp.obj | C$:/msys64/mingw64/lib/libSDL2main.a C$:/msys64/mingw64/lib/libSDL2.dll.a C$:/msys64/mingw64/lib/libSDL2_image.dll.a
   FLAGS = -g
   LINK_LIBRARIES = C:/msys64/mingw64/lib/libSDL2main.a  C:/msys64/mingw64/lib/libSDL2.dll.a  C:/msys64/mingw64/lib/libSDL2_image.dll.a  -lshell32  -Wl,--undefined=WinMain  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\FizzleRpg.dir

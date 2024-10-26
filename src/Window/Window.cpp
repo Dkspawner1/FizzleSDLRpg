@@ -40,7 +40,7 @@ bool Window::initialize() const {
 
 void Window::clear() const {
     if (m_renderer) {
-        SDL_SetRenderDrawColor(m_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+        SDL_SetRenderDrawColor(m_renderer, 255, 105, 180, 0xFF);
         SDL_RenderClear(m_renderer);
     }
 }

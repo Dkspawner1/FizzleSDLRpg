@@ -4,36 +4,64 @@
 #include <SDL.h>
 #include <entt/entt.hpp>
 #include "../Components/ButtonComponent.h"
+#include "../Components/BackgroundComponent.h"
+#include <algorithm>
+#include <vector>
 
 class RenderSystem {
 public:
-    static void render(entt::registry &registry, SDL_Renderer *renderer) {
-        for (const entt::entity entity: registry.view<ButtonComponent>()) {
-            const ButtonComponent &button = registry.get<ButtonComponent>(entity);
+    static void initialize(entt::registry& registry) {
+        registry.group<BackgroundComponent, ButtonComponent>();
+    }
 
-            // Set color modulation based on button state
-            if (button.isPressed) {
-                SDL_SetTextureColorMod(button.texture, 0, 255, 0); // Green when pressed
-            } else if (button.isHovered) {
-                SDL_SetTextureColorMod(button.texture, 255, 255, 0); // Yellow when hovered
-            } else {
-                SDL_SetTextureColorMod(button.texture, 255, 0, 0); // Red for normal state
+    static void render(entt::registry& registry, SDL_Renderer* renderer) {
+        renderBackgrounds(registry, renderer);
+        renderButtons(registry, renderer);
+    }
+
+private:
+    static void renderBackgrounds(entt::registry& registry, SDL_Renderer* renderer) {
+        auto view = registry.view<BackgroundComponent>();
+        for (auto [entity, bg] : view.each()) {
+            if (bg.useAlphaBlending) {
+                SDL_SetTextureBlendMode(bg.texture, SDL_BLENDMODE_BLEND);
             }
-
-            // Render the button's texture
-            if (button.texture) {
-                if (SDL_RenderCopy(renderer, button.texture, nullptr, &button.rect) != 0) {
-                    std::cerr << "SDL_RenderCopy error: " << SDL_GetError() << std::endl; // Check for rendering errors
-                }
-                // std::cout << "Rendering button at position: (" << button.rect.x << ", " << button.rect.y << ")" << std::endl;
-            } else {
-                std::cerr << "Button texture is null!" << std::endl; // Debugging output
-            }
-
-            // Draw rectangle around where the button should be rendered
-            SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Red color for rectangle
-            SDL_RenderDrawRect(renderer, &button.rect);
+            SDL_RenderCopy(renderer, bg.texture, nullptr, &bg.rect);
         }
+    }
+
+    static void renderButtons(entt::registry& registry, SDL_Renderer* renderer) {
+        auto view = registry.view<ButtonComponent>();
+        for (auto [entity, button] : view.each()) {
+            setButtonColor(button);
+            renderButtonTexture(renderer, button);
+            drawButtonOutline(renderer, button);
+        }
+    }
+
+    static void setButtonColor(const ButtonComponent& button) {
+        if (button.isPressed) {
+            SDL_SetTextureColorMod(button.texture, 128, 128, 128); // Gray when pressed
+        } else if (button.isHovered) {
+            SDL_SetTextureColorMod(button.texture, 169, 169, 169); // Dark Gray when hovered
+        } else {
+            SDL_SetTextureColorMod(button.texture, 255, 255, 255); // White for normal state
+        }
+    }
+
+    static void renderButtonTexture(SDL_Renderer* renderer, const ButtonComponent& button) {
+        if (button.texture) {
+            if (SDL_RenderCopy(renderer, button.texture, nullptr, &button.rect) != 0) {
+                std::cerr << "SDL_RenderCopy error: " << SDL_GetError() << std::endl;
+            }
+        } else {
+            std::cerr << "Button texture is null!" << std::endl;
+        }
+    }
+
+    static void drawButtonOutline(SDL_Renderer* renderer, const ButtonComponent& button) {
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Red color for rectangle
+        SDL_RenderDrawRect(renderer, &button.rect);
     }
 };
 

@@ -5,20 +5,24 @@ void SceneManager::addScene(const std::string& name, const std::shared_ptr<Scene
 }
 
 void SceneManager::changeScene(const std::string& name, SDL_Renderer* renderer, entt::registry& registry) {
-    if (m_scenes.contains(name)) {
-        m_currentScene = m_scenes[name];
-        m_currentScene->initialize(renderer, registry); // Initialize new scene with renderer and registry
+    auto it = m_scenes.find(name);
+    if (it != m_scenes.end()) {
+        m_currentScene = it->second;
+        m_currentScene->initialize(renderer, registry);
+    } else {
+        // Handle error: scene not found
+        std::cerr << "Scene not found: " << name << std::endl;
     }
 }
 
-void SceneManager::update(entt::registry& registry, const SDL_Event& event) const {
+void SceneManager::update(entt::registry& registry, const SDL_Event& event) {
     if (m_currentScene) {
-        m_currentScene->update(registry, event); // Pass event to current scene
+        m_currentScene->update(registry, event);
     }
 }
 
-void SceneManager::render(SDL_Renderer* renderer, entt::registry& registry) const { // Accept registry here
+void SceneManager::render(SDL_Renderer* renderer, entt::registry& registry) {
     if (m_currentScene) {
-        m_currentScene->render(renderer, registry); // Pass the registry to render
+        m_currentScene->render(renderer, registry);
     }
 }

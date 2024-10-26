@@ -10,23 +10,19 @@ SDL_Texture* ResourceManager::loadTexture(const std::string& filePath, SDL_Rende
 
 void ResourceManager::addTexture(const std::string& id, const std::string& filePath, SDL_Renderer* renderer) {
     textures[id] = loadTexture(filePath, renderer);
-    if (textures[id] != nullptr) {
-        std::cout << "Loaded texture with ID: " << id << " from " << filePath << std::endl;
-    } else {
-        std::cerr << "Failed to load texture with ID: " << id << std::endl;
-    }
 }
 
 SDL_Texture* ResourceManager::getTexture(const std::string& id) const {
-    if (const auto it = textures.find(id); it != textures.end()) {
+    auto it = textures.find(id);
+    if (it != textures.end()) {
         return it->second;
     }
-    std::cerr << "Texture ID not found: " << id << std::endl;
-    return nullptr; // Return null if not found
+    std::cerr << "Texture not found: " << id << std::endl;
+    return nullptr;
 }
 
 ResourceManager::~ResourceManager() {
-    for (auto& [id, texture] : textures) {
-        SDL_DestroyTexture(texture); // Clean up loaded textures
+    for (auto& pair : textures) {
+        SDL_DestroyTexture(pair.second);
     }
 }

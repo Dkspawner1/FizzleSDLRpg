@@ -2,12 +2,14 @@
 #include <SDL.h>
 #include <entt/entt.hpp>
 #include "Resources/ResourceManager.h"
+#include "Scenes/GameScene.h"
+#include "Scenes/SettingsScene.h"
 #include "src/EventManager/EventManager.h"
 #include "src/SceneManager/SceneManager.h"
 #include "src/Scenes/MainMenuScene.h"
 #include "src/Window/Window.h"
 
-int main(int argc, char *args[]) {
+int main(int, char *[]) {
     #if (DEBUG_LEVEL > 0)
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
@@ -27,13 +29,9 @@ int main(int argc, char *args[]) {
         return 1;  // Initialization failed
     }
 
-    // Resource Manager for loading textures
-    // Use singleton instance
-    // ResourceManager& resourceManager = ResourceManager::getInstance();
-
-    // Event and Scene Managers
-    EventManager eventManager;
-    SceneManager sceneManager;
+    // Get manager instances
+    EventManager& eventManager = EventManager::getInstance();
+    SceneManager& sceneManager = SceneManager::getInstance();
 
     // Create an entity registry for EnTT
     entt::registry registry;
@@ -41,6 +39,12 @@ int main(int argc, char *args[]) {
     // Create and add scenes to the Scene Manager
     const auto mainMenu = std::make_shared<MainMenuScene>();
     sceneManager.addScene("MainMenu", mainMenu);
+
+    const auto settingsScene = std::make_shared<SettingsScene>();
+    sceneManager.addScene("SettingsScene", settingsScene);
+
+    const auto gameScene = std::make_shared<GameScene>();
+    sceneManager.addScene("GameScene", gameScene);
 
     // Change to the Main Menu scene and initialize it with the renderer and registry
     sceneManager.changeScene("MainMenu", window.getRenderer(), registry);
@@ -53,17 +57,19 @@ int main(int argc, char *args[]) {
     // Main game loop
     while (running) {
         SDL_Event event;
-
-        // Handle events
         while (SDL_PollEvent(&event)) {
-            EventManager::handleEvents(running);
+            if (event.type == SDL_QUIT) {
+                running = false;
+                break;
+            }
+            eventManager.handleEvents(running);
             sceneManager.update(registry, event);
         }
-        // Clear the window
+
+        if (!running) break;  // Exit the main loop if running is false
+
         window.clear();
-        // Pass the registry here
         sceneManager.render(window.getRenderer(), registry);
-        // Display the rendered content
         window.display();
     }
 
