@@ -22,3 +22,7 @@
 27	6136	7516741994253059	CMakeFiles/FizzleRpg.dir/src/Scenes/SettingsScene.cpp.obj	74b1528d510daef5
 20	6215	7516741994187186	CMakeFiles/FizzleRpg.dir/src/Scenes/GameScene.cpp.obj	f05851f458c23681
 6215	12080	7516742056137128	FizzleRpg.exe	4181636aaae5863e
+28	4015	7516743170510148	CMakeFiles/FizzleRpg.dir/main.cpp.obj	93ac5dd6bde7eb46
+20	5327	7516743170426674	CMakeFiles/FizzleRpg.dir/src/Scenes/SettingsScene.cpp.obj	74b1528d510daef5
+14	5366	7516743170377771	CMakeFiles/FizzleRpg.dir/src/Scenes/GameScene.cpp.obj	f05851f458c23681
+5367	11021	7516743223900071	FizzleRpg.exe	4181636aaae5863e
