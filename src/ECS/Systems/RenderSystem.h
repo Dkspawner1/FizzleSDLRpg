@@ -1,20 +1,35 @@
 ﻿#ifndef RENDERSYSTEM_H
 #define RENDERSYSTEM_H
 
-#include <entt/entt.hpp>
 #include <SDL.h>
+#include <entt/entt.hpp>
 #include "../Components/ButtonComponent.h"
 
 class RenderSystem {
 public:
     static void render(entt::registry &registry, SDL_Renderer *renderer) {
-        for (const auto view = registry.view<ButtonComponent>(); const auto entity: view) {
-            const auto &button = view.get<ButtonComponent>(entity);
+        for (const entt::entity entity: registry.view<ButtonComponent>()) {
+            const ButtonComponent &button = registry.get<ButtonComponent>(entity);
 
-            SDL_SetRenderDrawColor(renderer, button.isHovered ? 255 : 0, 0, 0, 255);
-            SDL_RenderFillRect(renderer, &button.rect);
+            // Set color modulation based on button state for debugging
+            SDL_SetTextureColorMod(button.texture, 255, 0, 0); // Red for visibility during debugging
+
+            // Render the button's texture
+            if (button.texture) {
+                if (SDL_RenderCopy(renderer, button.texture, nullptr, &button.rect) != 0) {
+                    std::cerr << "SDL_RenderCopy error: " << SDL_GetError() << std::endl; // Check for rendering errors
+                }
+                std::cout << "Rendering button at position: (" << button.rect.x << ", " << button.rect.y << ")" <<
+                        std::endl;
+            } else {
+                std::cerr << "Button texture is null!" << std::endl; // Debugging output
+            }
+
+            // Draw rectangle around where the button should be rendered
+            SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Red color for rectangle
+            SDL_RenderDrawRect(renderer, &button.rect);
         }
     }
 };
 
-#endif //RENDERSYSTEM_H
+#endif // RENDERSYSTEM_H
