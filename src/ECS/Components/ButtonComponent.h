@@ -3,10 +3,10 @@
 
 #include <SDL.h>
 
-class ButtonComponent {
-public:
-    ButtonComponent(SDL_Texture* tex, int x, int y, int w, int h, const std::function<void()> &callback = nullptr)
-        : texture(tex), rect{x, y, w, h}, isHovered(false), isPressed(false), onClick(callback) {}
+struct ButtonComponent {
+    ButtonComponent(SDL_Texture *tex, int x, int y, int w, int h, const std::function<void()> &callback = nullptr)
+        : rect{x, y, w, h}, texture(tex), isHovered(false), isPressed(false), onClick(callback) {
+    }
 
     SDL_Rect rect; // Rectangle for button dimensions and position
     SDL_Texture *texture; // Texture for the button

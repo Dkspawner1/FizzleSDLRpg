@@ -16,7 +16,7 @@ public:
 
 private:
     void createBackground(SDL_Renderer* renderer, entt::registry& registry);
-    void createButtons(SDL_Renderer* renderer, entt::registry& registry);
+    void createButtons(SDL_Renderer* renderer, entt::registry& registry) const;
 
     SDL_Renderer* m_renderer;
     entt::registry* m_registry;

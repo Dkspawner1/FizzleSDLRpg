@@ -15,7 +15,7 @@ public:
     virtual void update(entt::registry& registry, const SDL_Event& event) = 0;
 
     // Render the scene using the specified renderer and entity registry
-    virtual void render(SDL_Renderer* renderer, entt::registry& registry) = 0; // Updated signature
+    virtual void render(SDL_Renderer* renderer, entt::registry& registry) = 0;
 };
 
 #endif // SCENE_H

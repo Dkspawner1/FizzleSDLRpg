@@ -1,8 +1,10 @@
 #include "MainMenuScene.h"
+
 #include <iostream>
 #include <SDL_image.h>
+
 #include "../Resources/ResourceManager.h"
-#include "../SceneManager/SceneManager.h" // Make sure to include this
+#include "../SceneManager/SceneManager.h"
 #include "../src/ecs/components/BackgroundComponent.h"
 #include "../src/ecs/components/ButtonComponent.h"
 #include "../src/ecs/systems/ButtonSystem.h"
@@ -45,27 +47,34 @@ void MainMenuScene::createBackground(SDL_Renderer *renderer, entt::registry &reg
     GameObjectFactory::createBackground(registry, bgTexture, 0, 0, windowWidth, windowHeight, true);
 }
 
-void MainMenuScene::createButtons(SDL_Renderer *renderer, entt::registry &registry) {
-    SDL_Texture *buttonTexture = GameObjectFactory::getOrLoadTexture("button0", "../assets/button0.png", renderer);
-    if (!buttonTexture) {
+void MainMenuScene::createButtons(SDL_Renderer *renderer, entt::registry &registry) const {
+    SDL_Texture *buttonTexture0 = GameObjectFactory::getOrLoadTexture("button0", "../assets/button0.png", renderer);
+    SDL_Texture *buttonTexture1 = GameObjectFactory::getOrLoadTexture("button1", "../assets/button1.png", renderer);
+    SDL_Texture *buttonTexture2 = GameObjectFactory::getOrLoadTexture("button2", "../assets/button2.png", renderer);
+
+    if (!buttonTexture0 || !buttonTexture1 || !buttonTexture2) {
         std::cerr << "Failed to load button texture" << std::endl;
         return;
     }
 
+
     // Create button to change to game scene
-    GameObjectFactory::createButton(registry, buttonTexture, 200, 200, 0.25f, [this]() {
+    GameObjectFactory::createButton(registry, buttonTexture0, 200, 200, 0.25f, [this]() {
         std::cout << "Changing to Game Scene" << std::endl;
         SceneManager::getInstance().changeScene("GameScene", m_renderer, *m_registry);
     });
 
     // Create button to change to settings scene
-    GameObjectFactory::createButton(registry, buttonTexture, 200, 300, 0.25f, [this]() {
+    GameObjectFactory::createButton(registry, buttonTexture1, 200, 300, 0.25f, [this]() {
         std::cout << "Changing to Settings Scene" << std::endl;
+
+        // Possible issue, it is passing the scene m_renderer and m_registry instead of the next scenes
+
         SceneManager::getInstance().changeScene("SettingsScene", m_renderer, *m_registry);
     });
 
     // Create button to exit game
-    GameObjectFactory::createButton(registry, buttonTexture, 200, 400, 0.25f, [this]() {
+    GameObjectFactory::createButton(registry, buttonTexture2, 200, 400, 0.25f, [this]() {
         std::cout << "Exiting game" << std::endl;
         SDL_Event quitEvent;
         quitEvent.type = SDL_QUIT;

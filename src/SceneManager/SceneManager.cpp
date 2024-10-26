@@ -3,7 +3,7 @@
 void SceneManager::addScene(const std::string& name, const std::shared_ptr<Scene>& scene) {
     m_scenes[name] = scene;
 }
-
+// TODO: fix
 void SceneManager::changeScene(const std::string& name, SDL_Renderer* renderer, entt::registry& registry) {
     auto it = m_scenes.find(name);
     if (it != m_scenes.end()) {

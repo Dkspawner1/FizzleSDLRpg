@@ -13,8 +13,7 @@ void ResourceManager::addTexture(const std::string& id, const std::string& fileP
 }
 
 SDL_Texture* ResourceManager::getTexture(const std::string& id) const {
-    auto it = textures.find(id);
-    if (it != textures.end()) {
+    if (const auto it = textures.find(id); it != textures.end()) {
         return it->second;
     }
     std::cerr << "Texture not found: " << id << std::endl;
@@ -22,7 +21,7 @@ SDL_Texture* ResourceManager::getTexture(const std::string& id) const {
 }
 
 ResourceManager::~ResourceManager() {
-    for (auto& pair : textures) {
-        SDL_DestroyTexture(pair.second);
+    for (const auto&[fst, snd] : textures) {
+        SDL_DestroyTexture(snd);
     }
 }
