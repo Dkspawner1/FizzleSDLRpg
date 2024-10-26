@@ -14,7 +14,7 @@ int main(int argc, char *args[]) {
     }
 
     // Resource Manager for loading textures
-    ResourceManager resourceManager;
+    ResourceManager& resourceManager = ResourceManager::getInstance(); // Use singleton instance
 
     // Event and Scene Managers
     EventManager eventManager;

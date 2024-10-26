@@ -26,11 +26,10 @@ void MainMenuScene::initialize(SDL_Renderer *renderer, entt::registry &registry)
         return; // Exit if texture loading fails
     }
 
-    // Load button texture from ResourceManager
-    ResourceManager resourceManager;
-    resourceManager.addTexture("button0", "../assets/button0.png", renderer);
+    // Load button texture using ResourceManager singleton
+    ResourceManager::getInstance().addTexture("button0", "../assets/button0.png", renderer);
 
-    SDL_Texture *buttonTexture = resourceManager.getTexture("button0");
+    SDL_Texture *buttonTexture = ResourceManager::getInstance().getTexture("button0");
     if (!buttonTexture) {
         std::cerr << "Failed to retrieve button texture." << std::endl;
         return; // Exit if texture retrieval fails
@@ -46,7 +45,7 @@ void MainMenuScene::update(entt::registry &registry, const SDL_Event &event) {
 }
 
 void MainMenuScene::render(SDL_Renderer *renderer, entt::registry &registry) {
-    
+
     // Draw the background first (commented out for testing)
     if (m_backgroundTexture) {
         SDL_RenderCopy(renderer, m_backgroundTexture, nullptr, nullptr);

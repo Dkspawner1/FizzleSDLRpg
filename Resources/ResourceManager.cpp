@@ -27,6 +27,6 @@ SDL_Texture* ResourceManager::getTexture(const std::string& id) const {
 
 ResourceManager::~ResourceManager() {
     for (auto& [id, texture] : textures) {
-        SDL_DestroyTexture(texture);
+        SDL_DestroyTexture(texture); // Clean up loaded textures
     }
 }
